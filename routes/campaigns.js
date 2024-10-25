@@ -1,4 +1,3 @@
-// routes/campaigns.js
 const express = require('express');
 const router = express.Router();
 const connection = require('../db'); // Import the database connection
@@ -12,7 +11,5 @@ router.get('/', (req, res) => {
         res.json(results);
     });
 });
-
-// Add more campaign routes as needed
 
 module.exports = router;

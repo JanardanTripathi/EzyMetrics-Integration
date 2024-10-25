@@ -2,6 +2,7 @@ const express = require('express');
 const connection = require('./db'); // Import the database connection
 const { createObjectCsvWriter } = require('csv-writer');
 const nodemailer = require('nodemailer');
+const campaignsRouter = require('./routes/campaigns'); // Import campaigns route
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,7 +11,7 @@ app.use(express.json()); // Middleware to parse JSON requests
 
 // Example route
 app.get('/', (req, res) => {
-    res.send('Welcome to EzyMetrics API!');
+    res.send('Welcome to EzyMetrics API! \n Created By Janardan Tripathi');
 });
 
 // Route to get all leads
@@ -23,6 +24,9 @@ app.get('/api/leads', (req, res) => {
         res.json(results);
     });
 });
+
+// Integrate campaigns route
+app.use('/api/campaigns', campaignsRouter);
 
 // Endpoint to generate CSV report of leads
 app.get('/api/reports/leads', (req, res) => {
@@ -59,12 +63,11 @@ app.get('/api/reports/leads', (req, res) => {
 app.post('/api/alerts/send', (req, res) => {
     const { to, subject, text } = req.body;
 
-    // Create a transporter object using SMTP
     const transporter = nodemailer.createTransport({
-        service: 'gmail', // Use your email service
+        service: 'gmail',
         auth: {
-            user: process.env.EMAIL_USER, // Your email
-            pass: process.env.EMAIL_PASS, // Your email password or app password
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
         },
     });
 
