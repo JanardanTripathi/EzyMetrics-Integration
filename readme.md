@@ -7,7 +7,7 @@ EzyMetrics API is designed to manage leads and campaigns, generate reports, and 
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone -:(https://github.com/JanardanTripathi/EzyMetrics-Integration)
    ```
 2. Navigate to the project directory:
    ```bash
